@@ -29,7 +29,7 @@ when they are not dimmed. Any press will wake up the MACROPAD lights again
 #  - 0 = US QWERTY
 #  - 1 = Belgian AZERTY
 #  - 2 = Modified Belgian AZERTY (numbers and characters on number-row swapped)
-KEYBOARD_LAYOUT = 2
+KEYBOARD_LAYOUT = 0
 
 
 import os
