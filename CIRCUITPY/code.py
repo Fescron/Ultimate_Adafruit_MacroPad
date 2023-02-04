@@ -1,5 +1,5 @@
 """
-[04/02/2022 BRECHTVE]
+[04/02/2023 BRECHTVE]
 
 A macro/hotkey program for the Adafruit MACROPAD, modified from the original Adafruit example
 (see also https://learn.adafruit.com/macropad-hotkeys?view=all).
