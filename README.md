@@ -33,20 +33,23 @@ Note that the NeoKey 1x4 boards ship without switches and keycaps, they need to 
 | 2 | STEMMA QT / Qwiic JST SH 4-Pin Cable - 50mm Long | https://www.adafruit.com/product/4399 |
 | 1 | Anodized Aluminum Machined Knob - Black - 20mm Diameter | https://www.adafruit.com/product/5527 |
 | 1 | 2 pcs Laptop riser feet | https://www.aliexpress.com/item/1005003557570061.html |
+| 1 | 12x5mm 40 pcs round rubber pads | https://www.aliexpress.com/item/33030992785.html | 
 | | Base-plate + M2.5/M3 mounting hardware | |
 | | Carrying case | https://www.aliexpress.com/item/1005001855670902.html |
 
-As the second-last line from the table implies, I've made a custom base-plate with some holes in it to mount everything to. In the future (**TODO**) I might create a custom PCB with the correct holes as well as a way to connect the two NeoKey 1x4's together with headers instead of cables. This way the STEMMA QT/Qwiic cables don't need to be soldered together in a "Y" formation as to not have a cable sticking out on the bottom, connecting the two boards together. Additionally another board needs to be made (**TODO**) to make sure all of the switches are held together nice and tight.
+I've made a custom base-plate with some holes in it to mount everything to. In the future (**TODO**) I might create a custom PCB with the correct holes as well as a way to connect the two NeoKey 1x4's together with headers instead of cables. This way the STEMMA QT/Qwiic cables don't need to be soldered together in a "Y" formation as to not have a cable sticking out on the bottom, connecting the two boards together. Additionally another board needs to be made (**TODO**) to make sure all of the switches are held together nice and tight.
 
 The dimensions of this plate and the holes in it are depicted below. The holes for the NeoKey boards are M2.5 (about 2.7mm in diameter), those for the Macropad are M3 (about 3.2mm in diameter).
 
-<img src="img/baseplate-construction.png" alt="Base-plate construction">
+| <img src="img/baseplate-construction.png" alt="Base-plate construction"> | <img src="img/ultimate-macropad-case.png" alt="Ultimate Adafruit Macropad inside a case"> |
+|--|--|
+| <img src="img/ultimate-macropad.png" alt="Ultimate Adafruit Macropad"> | <img src="img/ultimate-macropad-back.png" alt="Back of the Ultimate Adafruit Macropad"> |
 
 The left-most NeoKey 1x4 board needs to have solder-jumper `A0` closed to set its I2C address to `0x31`. The right-most NeoKey 1x4 board will keep its default address of `0x30`.
 
 <br/>
 
-The last line in the table also links to a carrying-case which fits the **Ultimate Macropad** rather well. I've cut a small foam-insert to keep it from moving around in the case. Look at the end of this readme to find a picture of the macropad inside the case.
+The last line in the table links to a carrying-case which fits the **Ultimate Macropad** rather well. I've cut a small foam-insert to keep it from moving around in the case.
 
 <br/>
 
@@ -89,11 +92,3 @@ Also, some notes about my macro-definitions.
 With the **Ultimate Macropad** macro-definition-pages can be switched to by simply pressing one of the NeoKey buttons. The LED of the last selected (group of) page(s) lights up bright white, the other NeoKey LEDs light up according to their defined color in `neokey_buttons` in the [`CIRCUITPY/code.py`](CIRCUITPY/code.py) file.
 
 When there are multiple macro-definition-pages linked to a single NeoKey button (more than one number in the square brackets in `neokey_buttons`), subsequent presses on the same key rotate between all pages defined in the square brackets. The last selected page is remembered in case another NeoKey button is pressed to select another (group of) page(s) or a whole NeoKey layer is changed using the rotary-encoder.
-
-<br/>
-
-<img src="img/ultimate-macropad.png" alt="Ultimate Adafruit Macropad">
-
-<br/>
-
-<img src="img/ultimate-macropad-case.png" alt="Ultimate Adafruit Macropad inside a case">
