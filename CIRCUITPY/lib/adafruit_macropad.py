@@ -85,7 +85,7 @@ try:
 except ImportError:
     pass
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_MacroPad.git"
 
 ROTATED_KEYMAP_0 = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
@@ -93,6 +93,9 @@ ROTATED_KEYMAP_90 = (2, 5, 8, 11, 1, 4, 7, 10, 0, 3, 6, 9)
 ROTATED_KEYMAP_180 = (11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 ROTATED_KEYMAP_270 = (9, 6, 3, 0, 10, 7, 4, 1, 11, 8, 5, 2)
 
+# See https://cdn-shop.adafruit.com/product-files/5228/5223-ds.pdf#page=13
+_DISPLAY_SLEEP_COMMAND = 0xAE
+_DISPLAY_WAKE_COMMAND = 0xAF
 
 keycodes = Keycode
 """Module level Keycode class, to be changed when initing Macropad with a different language"""
@@ -243,7 +246,6 @@ class MacroPad:
         layout_class: type[KeyboardLayoutBase] = KeyboardLayoutUS,
         keycode_class: type[Keycode] = Keycode,
     ):
-
         if rotation not in (0, 90, 180, 270):
             raise ValueError("Only 90 degree rotations are supported.")
 
@@ -291,6 +293,8 @@ class MacroPad:
         if not isinstance(board.DISPLAY, type(None)):
             self.display = board.DISPLAY
             self.display.rotation = rotation
+            self.display.bus.send(_DISPLAY_WAKE_COMMAND, b"")
+        self._display_sleep = False
 
         # Define audio:
         self._speaker_enable = digitalio.DigitalInOut(board.SPEAKER_ENABLE)
@@ -323,6 +327,29 @@ class MacroPad:
         except IndexError:
             # No MIDI ports available.
             self._midi = None
+
+    @property
+    def display_sleep(self) -> bool:
+        """The power saver mode of the display. Set it to put the display to
+        sleep or wake it up again.
+
+        If the display is put to sleep, it stops the OLED drive and greatly
+        reduces its power usage. The display mode and current content of the
+        display are still kept in the memory of the displays microprocessor and
+        can be updated nevertheless.
+        """
+        return self._display_sleep
+
+    @display_sleep.setter
+    def display_sleep(self, sleep: bool) -> None:
+        if self._display_sleep == sleep:
+            return
+        if sleep:
+            command = _DISPLAY_SLEEP_COMMAND
+        else:
+            command = _DISPLAY_WAKE_COMMAND
+        self.display.bus.send(command, b"")
+        self._display_sleep = sleep
 
     @property
     def pixels(self) -> Optional[_PixelMapLite]:
@@ -397,9 +424,9 @@ class MacroPad:
         * ``key_number``: the number of the key that changed. Keys are numbered starting at 0.
         * ``pressed``: ``True`` if the event is a transition from released to pressed.
         * ``released``: ``True`` if the event is a transition from pressed to released.
-                        ``released`` is always the opposite of ``pressed``; it's provided
-                        for convenience and clarity, in case you want to test for
-                        key-release events explicitly.
+
+        ``released`` is always the opposite of ``pressed``; it's provided for convenience
+        and clarity, in case you want to test for key-release events explicitly.
 
         The following example prints the key press and release events to the serial console.
 
@@ -838,7 +865,7 @@ class MacroPad:
         if not position:
             position = (0, 0)
         group = displayio.Group(scale=1)
-        self.display.show(group)
+        self.display.root_group = group
         with open(file_name, "rb") as image_file:
             background = displayio.OnDiskBitmap(image_file)
             sprite = displayio.TileGrid(
@@ -872,9 +899,9 @@ class MacroPad:
                                  Defaults to 80.
         :param int text_scale: Scale the size of the data lines. Scales the title as well.
                                Defaults to 1.
-        :param font: The font or the path to the custom font file to use to display the text.
-                     Defaults to the built-in ``terminalio.FONT``. Custom font files must be
-                     provided as a string, e.g. ``"/Arial12.bdf"``.
+        :param ~FontProtocol|None font: The custom font to use to display the text. Defaults to the
+                                        built-in ``terminalio.FONT``. For more details, see:
+                                        https://docs.circuitpython.org/en/latest/shared-bindings/fontio/index.html
 
         The following example displays a title and lines of text indicating which key is pressed,
         the relative position of the rotary encoder, and whether the encoder switch is pressed.
@@ -882,11 +909,14 @@ class MacroPad:
 
         .. code-block:: python
 
+            from adafruit_bitmap_font import bitmap_font
             from adafruit_macropad import MacroPad
+            from displayio import Bitmap
 
             macropad = MacroPad()
 
-            text_lines = macropad.display_text(title="MacroPad Info")
+            custom_font = bitmap_font.load_font("/Arial12.bdf", Bitmap)
+            text_lines = macropad.display_text(title="MacroPad Info", font=custom_font)
 
             while True:
                 key_event = macropad.keys.events.get()

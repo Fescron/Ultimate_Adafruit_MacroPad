@@ -4,7 +4,7 @@
 from adafruit_macropad import keycodes as Kc # REQUIRED if using Kc.* values
 
 app = {                              # REQUIRED dict, must be named 'app'
-    'name' : 'Embedded C       1/2', # Application name (<20 chars)
+    'name' : 'Embedded C       2/2', # Application name (<20 chars)
     'macros' : [                     # List of button macros...
         # COLOR    LABEL (<7 chars)    KEY SEQUENCE
         # 1st row ----------
@@ -14,7 +14,7 @@ app = {                              # REQUIRED dict, must be named 'app'
             '@brief\tTemplate functionality.\n',
             '@date\t05/05/2022\n',
             '@version\t1.0\n',
-            '@author\tBrecht Van Eeckhoudt (Dekimo)\n',
+            '@author\tBRECHTVE\n',
             '\n',
             '*****************************************************************************\n',
             '\n',
@@ -74,7 +74,7 @@ app = {                              # REQUIRED dict, must be named 'app'
             '@brief\tTemplate functionality.\n',
             '@date\t05/05/2022\n',
             '@version\t1.0\n',
-            '@author\tBrecht Van Eeckhoudt (Dekimo)\n',
+            '@author\tBRECHTVE\n',
             '\n',
             '*****************************************************************************\n',
             '\n',
@@ -121,7 +121,7 @@ app = {                              # REQUIRED dict, must be named 'app'
             '/**************************************************************************//**\n',
             '@brief\tFunction to initialize the TEMPLATE peripheral.\n',
             '@details\tThis function configures the pins as well as the TEMPLATE-settings.\n',
-            '@author\tBrecht Van Eeckhoudt (Dekimo)\n',
+            '@author\tBRECHTVE\n',
             Kc.BACKSPACE, -Kc.BACKSPACE,
             '****************************************************************************/\n',
             'void template_init (void)\n',
@@ -158,7 +158,7 @@ app = {                              # REQUIRED dict, must be named 'app'
             '/**************************************************************************//**\n',
             '@brief\tFunction to initialize the TEMPLATE peripheral.\n',
             '@details\tThis function configures the pins as well as the TEMPLATE-settings.\n',
-            '@author\tBrecht Van Eeckhoudt (Dekimo)\n',
+            '@author\tBRECHTVE\n',
             Kc.BACKSPACE, -Kc.BACKSPACE,
             '****************************************************************************/',
             Kc.DELETE, -Kc.DELETE, Kc.DELETE, -Kc.DELETE,
@@ -172,7 +172,7 @@ app = {                              # REQUIRED dict, must be named 'app'
             '/**************************************************************************//**\n',
             '@brief\tTEMPLATE interrupt handler.\n',
             '@note\tThe *weak* definition for this method is located in `system_efm32hg.h`.\n',
-            '@author\tBrecht Van Eeckhoudt (Dekimo)\n',
+            '@author\tBRECHTVE\n',
             Kc.BACKSPACE, -Kc.BACKSPACE,
             '****************************************************************************/\n',
             '\n',
