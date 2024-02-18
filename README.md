@@ -42,6 +42,7 @@ Also note that the NeoKey 1x4 boards ship without switches and keycaps, they nee
 | 2 | NeoKey 1x4 QT I2C | https://www.adafruit.com/product/4980 |
 | 20 | Black Windowed Lamp R4 Keycap for MX Compatible Switches | https://www.adafruit.com/product/5112 |
 | 1 | STEMMA QT / Qwiic JST SH 4-Pin Cable - 50mm Long | https://www.adafruit.com/product/4399 |
+| 1 | Monochrome 1.3" 128x64 OLED graphic display - STEMMA QT / Qwiic | https://www.adafruit.com/product/938 |
 | 1 | Anodized Aluminum Machined Knob - Black - 20mm Diameter | https://www.adafruit.com/product/5527 |
 | 1 | Adafruit MacroPad RP2040 Enclosure + Hardware Add-on Pack | https://www.adafruit.com/product/5103 |
 | 1 | Baseboard PCB | (see [these](pcb/ultimate-adafruit-macropad-baseboard/gerber/) gerber-files) |
