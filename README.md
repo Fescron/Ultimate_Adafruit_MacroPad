@@ -3,7 +3,7 @@
 ![Shortcut](https://img.shields.io/badge/website-macropad.brechtve.be-yellow)
 ![License](https://img.shields.io/badge/licence-MIT-blue)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Fescron/Ultimate_Adafruit_MacroPad.svg)
-![GitHub Release Date](https://img.shields.io/github/release-date/Fescron/Ultimate_Adafruit_MacroPadsvg)
+![GitHub Release Date](https://img.shields.io/github/release-date/Fescron/Ultimate_Adafruit_MacroPad.svg)
 ![GitHub release](https://img.shields.io/github/release/Fescron/Ultimate_Adafruit_MacroPad.svg)
 
 This repository contains **necessary components** and **fabrication instructions** for my **Ultimate Adafruit Macropad**, as well as the **code and macro-definitions** I run on it. **Configuration and usage instructions** are also listed here.
